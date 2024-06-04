@@ -63,7 +63,7 @@ jobs:
           cache-from: type=registry,ref=jjames2489/qr_code_api_broken_code:cache
           cache-to: type=inline,mode=max
           
-      - name: Scan the Docker image
+      -  name: Scan the Docker image
         uses: aquasecurity/trivy-action@master
         with:
           image-ref: 'jjames2489/qr_code_api_broken_code:${{ github.sha }}'
