@@ -1,6 +1,6 @@
 import os
 from typing import List
-import qrcode
+import qrcode #change from capital C to common c
 import logging
 from pathlib import Path
 from app.config import SERVER_BASE_URL, SERVER_DOWNLOAD_FOLDER
@@ -46,7 +46,7 @@ def generate_qr_code(data: str, path: Path, fill_color: str = 'red', back_color:
         logging.error(f"Failed to generate/save QR code: {e}")
         raise
 
-def delete_qr_cde(file_path: Path):
+def delete_qr_code(file_path: Path):
     """
     Deletes the specified QR code image file.
     Parameters:
