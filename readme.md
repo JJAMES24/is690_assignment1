@@ -1,3 +1,33 @@
+# Notice changes 
+First error was in qr_service: change the import qrCode to import qrcode
+Second error was in the main.py file change app.include_router(qr_code.ruter) to app.include_router(qr_code.router)
+ 
+Local pytest ran
+qr_code.py file line 24 changed from @router.post("/qr-coes/", response_model=QRCodeResponse, status_code=status.HTTP_200_OK, tags=["QR Codes"])
+to 
+@router.post("/qr-codes/", response_model=QRCodeResponse, status_code=status.HTTP_200_OK, tags=["QR Codes"])
+
+Oauth.py line 18 @router.post("/tokn", response_model=Token) changed to 
+@router.post("/token", response_model=Token)
+
+This warning showed WARNING  root:common.py:36 Authentication failed for user: admin
+So check the config.py and changed ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'ecret') to ADMIN_PASSWORD = os.getenv('ADMIN_PASSWORD', 'secret')
+
+Last test for schema.py line 5  ul: HttpUrl = Field(..., description="The URL to encode into the QR code.") changed to  url: HttpUrl = Field(..., description="The URL to encode into the QR code.")
+
+Line 37  schema.py  changed from  mssage: str = Field(..., description="A message related to the QR code request.") to  message: str = Field(..., description="A message related to the QR code request.")
+Line 69 common.py sanitizd_url = validate_and_sanitize_url(str(url)) changed to sanitized_url = validate_and_sanitize_url(str(url))
+Line 70 common.py if sanitized_url is None: changed to if sanitized_url is None:
+Line 72 common.py encoded_bytes = base64.urlsafe_b64encode(sanitized_url.encode('utf-8')) changed to  encoded_bytes = base64.urlsafe_b64encode(sanitized_url.encode('utf-8'))
+
+Line 84 common.py  changed from decoded_bytes = base64.urlsafe_b6decode(encoded_str) to 
+decoded_bytes = base64.urlsafe_b64decode(encoded_str)
+
+line 24 qr_code.py changed from @router.post("/qr-codes/", response_model=QRCodeResponse, status_code=status.HTTP_200_OK, tags=["QR Codes"]) to @router.post("/qr-codes/", response_model=QRCodeResponse, status_code=status.HTTP_201_CREATED, tags=["QR Codes"])
+
+Line 45 qr_code changed from status_code=status.HTTP_200_OK, changed to status_code=status.HTTP_409_CONFLICT,
+
+
 # RestAPI for Creating QR Codes
 
 For this assignment I want you to go over the videos and I've created a X number of errors in the code that you will have to find and fix them.  You should keep running the tests and read the error and try to understand what it mean.  The purpose of this assignment is to get you accustomed to running the project and following the steps that the program uses to process requests.
